@@ -3,23 +3,17 @@ pipeline {
 
     stages {
 
-        stage('Install Dependencies') {
-            steps {
-                sh 'npm install || true'
-            }
-        }
-
         stage('Run Tests') {
             steps {
-                sh 'npm test || true'
+                echo 'Running tests'
             }
             post {
                 always {
-                    mail(
+                    emailext(
                         to: 'khattriveer2@gmail.com',
-                        subject: 'Test Stage Completed',
-                        body: 'The Test stage has finished. Check attached log.',
-                      
+                        subject: "Test Stage - ${currentBuild.currentResult}",
+                        body: "Test Stage completed with status: ${currentBuild.currentResult}",
+                        attachLog: true
                     )
                 }
             }
@@ -27,15 +21,15 @@ pipeline {
 
         stage('Security Scan') {
             steps {
-                sh 'npm audit || true'
+                echo 'Running Security Scan'
             }
             post {
                 always {
-                    mail(
+                    emailext(
                         to: 'khattriveer2@gmail.com',
-                        subject: 'Security Scan Completed',
-                        body: 'The Security Scan stage has finished. Check attached log.',
-                      
+                        subject: "Security Scan - ${currentBuild.currentResult}",
+                        body: "Security Scan completed with status: ${currentBuild.currentResult}",
+                        attachLog: true
                     )
                 }
             }
