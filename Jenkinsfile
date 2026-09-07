@@ -32,7 +32,7 @@ pipeline {
             post {
                 always {
                     emailext(
-                        to: 'khattriveer2@@gmail.com',
+                        to: 'khattriveer2@gmail.com',
                         subject: 'Security Scan Completed',
                         body: 'The Security Scan stage has finished. Check attached log.',
                         attachLog: true
