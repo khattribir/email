@@ -5,15 +5,14 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                echo 'Running tests'
+                echo 'Running Tests'
             }
             post {
                 always {
-                    emailext(
+                    mail(
                         to: 'khattriveer2@gmail.com',
-                        subject: "Test Stage - ${currentBuild.currentResult}",
-                        body: "Test Stage completed with status: ${currentBuild.currentResult}",
-                        attachLog: true
+                        subject: "Test Stage - SUCCESS",
+                        body: "The Test stage has completed successfully."
                     )
                 }
             }
@@ -25,11 +24,10 @@ pipeline {
             }
             post {
                 always {
-                    emailext(
+                    mail(
                         to: 'khattriveer2@gmail.com',
-                        subject: "Security Scan - ${currentBuild.currentResult}",
-                        body: "Security Scan completed with status: ${currentBuild.currentResult}",
-                        attachLog: true
+                        subject: "Security Scan - SUCCESS",
+                        body: "The Security Scan stage has completed successfully."
                     )
                 }
             }
