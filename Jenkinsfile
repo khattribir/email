@@ -2,35 +2,22 @@ pipeline {
     agent any
 
     stages {
-
-        stage('Run Tests') {
+        stage('Test') {
             steps {
-                echo 'Running Tests'
-            }
-            post {
-                always {
-                    mail(
-                        to: 'khattriveer2@gmail.com',
-                        subject: "Test Stage - SUCCESS",
-                        body: "The Test stage has completed successfully."
-                    )
-                }
+                echo 'Testing Email Attachment'
             }
         }
+    }
 
-        stage('Security Scan') {
-            steps {
-                echo 'Running Security Scan'
-            }
-            post {
-                always {
-                    mail(
-                        to: 'khattriveer2@gmail.com',
-                        subject: "Security Scan - SUCCESS",
-                        body: "The Security Scan stage has completed successfully."
-                    )
-                }
-            }
+    post {
+        always {
+            emailext(
+                to: 'khattriveer2@gmail.com',
+                subject: "Build ${currentBuild.currentResult}",
+                body: "Build completed with status: ${currentBuild.currentResult}",
+                attachLog: true,
+                compressLog: true
+            )
         }
     }
 }
