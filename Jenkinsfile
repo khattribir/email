@@ -15,8 +15,7 @@ pipeline {
                 to: 'khattriveer2@gmail.com',
                 subject: "Build ${currentBuild.currentResult}",
                 body: "Build completed with status: ${currentBuild.currentResult}",
-                attachLog: true,
-                compressLog: true
+                attachLog: true
             )
         }
     }
