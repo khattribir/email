@@ -14,12 +14,10 @@ pipeline {
                         to: 'khattriveer2@gmail.com',
                         subject: "Test Stage - ${currentBuild.currentResult}",
                         body: """
-The Test stage has completed.
+Test stage completed.
 
 Status: ${currentBuild.currentResult}
 Build Number: ${env.BUILD_NUMBER}
-
-The Jenkins build log is attached to this email.
 """,
                         attachLog: true
                     )
@@ -38,12 +36,10 @@ The Jenkins build log is attached to this email.
                         to: 'khattriveer2@gmail.com',
                         subject: "Security Scan - ${currentBuild.currentResult}",
                         body: """
-The Security Scan stage has completed.
+Security Scan stage completed.
 
 Status: ${currentBuild.currentResult}
 Build Number: ${env.BUILD_NUMBER}
-
-The Jenkins build log is attached to this email.
 """,
                         attachLog: true
                     )
