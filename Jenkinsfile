@@ -19,7 +19,8 @@ Test stage completed.
 Status: ${currentBuild.currentResult}
 Build Number: ${env.BUILD_NUMBER}
 """,
-                        attachLog: true
+                        attachLog: true,
+                        compressLog: true
                     )
                 }
             }
@@ -41,7 +42,8 @@ Security Scan stage completed.
 Status: ${currentBuild.currentResult}
 Build Number: ${env.BUILD_NUMBER}
 """,
-                        attachLog: true
+                        attachLog: true,
+                        compressLog: true
                     )
                 }
             }
